@@ -1,43 +1,32 @@
 package com.example.nubo.ui.screen.learn
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import com.example.nubo.R
 import com.example.nubo.ui.theme.AppTextStyles.b1_semibold_18
 import com.example.nubo.ui.theme.AppTextStyles.b2_medium_16
-import com.example.nubo.ui.theme.AppTextStyles.b2_regular_16
 import com.example.nubo.ui.theme.AppTextStyles.b2_semibold_16
-import com.example.nubo.ui.theme.AppTextStyles.b3_medium_14
 import com.example.nubo.ui.theme.AppTextStyles.b3_regular_14
 import com.example.nubo.ui.theme.AppTextStyles.subtitle_semibold_20
 import com.example.nubo.ui.theme.AppTextStyles.title_semibold_24
-import com.example.nubo.ui.theme.GreyMain300
 import com.example.nubo.ui.theme.Grey500
 import com.example.nubo.ui.theme.Grey1000
 import com.example.nubo.ui.theme.Grey20
-import com.example.nubo.ui.theme.Grey200
 import com.example.nubo.ui.theme.GreyMain100
 import com.example.nubo.ui.theme.Purple200
-import com.example.nubo.ui.theme.PurpleMain500
 
 // 데이터 클래스: 화면에 표시할 베리 아이템 정보
 data class BerryItem(

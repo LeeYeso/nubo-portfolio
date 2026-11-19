@@ -120,15 +120,15 @@ fun LearnScreen(
                     onClickInfo = { showInfoPopup = true }
                 )
 
-                // 화면 진입 시 커스텀 토스트 호출 (1회성)
-//                LaunchedEffect(Unit) {
-//                    toastHostState.show(
-//                        title = AnnotatedString("정보를 불러오지 못했어요"),
-//                        summary = "네트워크 확인 후 다시 시도해주세요.", // 두 번째 줄은 summary로 처리
-//                        type = AppToastType.NEGATIVE,         // 에러 아이콘 타입
-//                        layout = AppToastLayout.TitleWithSummary // 제목 + 설명 레이아웃
-//                    )
-//                }
+                //화면 진입 시 커스텀 토스트 호출
+                LaunchedEffect(Unit) {
+                    toastHostState.show(
+                        title = AnnotatedString("정보를 불러오지 못했어요"),
+                        summary = "잠시후 다시 시도해주세요.", // 두 번째 줄은 summary로 처리
+                        type = AppToastType.NEGATIVE,         // 에러 아이콘 타입
+                        layout = AppToastLayout.TitleWithSummary // 제목 + 설명 레이아웃
+                    )
+                }
             }
 
             is DashboardUiState.Success -> {
@@ -138,7 +138,11 @@ fun LearnScreen(
                 // 1. 캘린더 날짜/카운트
                 val weeklyCounts = dashboardData.weeklyVideoCounts
                 val weekDatesFromServer = weeklyCounts.map { it.date }
-                val weekDayNumbers = weeklyCounts.map { LocalDate.parse(it.date).dayOfMonth }
+                val weekDayNumbers = weeklyCounts.map { item ->
+                    runCatching {
+                        LocalDate.parse(item.date).dayOfMonth
+                    }.getOrDefault(0)
+                }
                 val bubbleCounts = weeklyCounts.map { it.count }
 
                 // 2. 오늘 날짜 계산

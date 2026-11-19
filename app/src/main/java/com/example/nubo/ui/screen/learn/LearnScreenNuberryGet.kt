@@ -29,7 +29,6 @@ import com.example.nubo.ui.theme.AppTextStyles
 import com.example.nubo.ui.theme.Grey0
 import com.example.nubo.ui.theme.Grey1000
 import com.example.nubo.ui.theme.Grey500
-import com.example.nubo.ui.theme.Purple100
 import com.example.nubo.ui.theme.PurpleMain500
 
 @Composable

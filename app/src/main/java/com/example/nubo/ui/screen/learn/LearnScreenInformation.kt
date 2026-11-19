@@ -1,7 +1,6 @@
 package com.example.nubo.ui.screen.learn
 
 // Compose Runtime & Coroutines
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -37,7 +36,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 
 // Compose UI Graphics & Utils
@@ -47,7 +45,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity // 새로 추가됨
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -61,7 +59,6 @@ import com.example.nubo.ui.theme.AppTextStyles.b2_semibold_16
 import com.example.nubo.ui.theme.AppTextStyles.b3_regular_14
 import com.example.nubo.ui.theme.AppTextStyles.label_semibold_14
 import com.example.nubo.ui.theme.AppTextStyles.title_semibold_22
-import com.example.nubo.ui.theme.AppTextStyles.subtitle_semibold_20
 import com.example.nubo.ui.theme.Grey0
 import com.example.nubo.ui.theme.Grey1000
 import com.example.nubo.ui.theme.Grey500
@@ -338,65 +335,5 @@ private fun LearnInfoInnerContent(
         // 하단 버튼 영역(Button 41dp + Padding 24dp)
         // 버튼은 고정(Overlay)되어 있지만, 텍스트가 가려지지 않게 하기 위함
         Spacer(modifier = Modifier.height(65.dp))
-    }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun StickyAfterPageOneScreen() {
-    val pagerState = rememberPagerState(pageCount = { 4 })
-
-    // 화면 너비를 알기 위해 BoxWithConstraints 사용 (혹은 LocalConfiguration 사용)
-    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-        val screenWidth = maxWidth // 화면 전체 너비
-
-        // 1. 페이저 (배경)
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier.fillMaxSize()
-        ) { page ->
-            // 페이지별 콘텐츠
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(text = "Page $page Content", style = label_semibold_14)
-                // 1번 페이지에도 버튼을 넣지 않습니다. (밖에 있는 버튼이 대신함)
-            }
-        }
-
-        // 2. 버튼 오프셋 계산 (핵심)
-        val buttonTranslationX by remember {
-            derivedStateOf {
-                // 현재 스크롤 위치 (예: 0.5는 0페이지와 1페이지 중간)
-                val currentScrollPosition = pagerState.currentPage + pagerState.currentPageOffsetFraction
-
-                // 1번 페이지가 기준점(0)으로부터 얼마나 떨어져 있는지 계산
-                // 0페이지에 있을 때: (1 - 0) = 1 (화면 너비만큼 이동해야 함)
-                // 1페이지에 있을 때: (1 - 1) = 0 (이동 없음, 고정)
-                // 2페이지에 있을 때: (1 - 2) = -1 (음수이므로 0으로 처리하여 고정)
-                val distanceRequest = (1f - currentScrollPosition)
-
-                // 음수면(이미 1페이지를 지났으면) 0으로 고정, 양수면 그만큼 밀어줌
-                val offsetFraction = distanceRequest.coerceAtLeast(0f)
-
-                // 픽셀 단위로 변환
-                offsetFraction * screenWidth.value
-            }
-        }
-
-        // 3. 고정 버튼 (Box 위에 띄움)
-        Button(
-            onClick = { /* 클릭 동작 */ },
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 24.dp)
-                .fillMaxWidth(0.8f)
-                // 계산된 위치만큼 X축 이동 (dp 변환 필요)
-                .offset(x = with(LocalDensity.current) { buttonTranslationX.toDp() })
-        ) {
-            Text("시작하기 (1번부터 고정)")
-        }
     }
 }
