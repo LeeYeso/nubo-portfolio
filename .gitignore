@@ -82,8 +82,10 @@ fastlane/test_output/
 # 잘못된 복사본 방지
 **/* 2.*
 
-
-
 # mac & IDE
 .DS_Store
 .kotlin/
+
+# Additional environment and secret files
+.env.*
+*.p12

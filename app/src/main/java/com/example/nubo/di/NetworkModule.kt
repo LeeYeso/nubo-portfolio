@@ -1,6 +1,7 @@
 // com/example/nubo/di/NetworkModule.kt
 package com.example.nubo.di
 
+import com.example.nubo.BuildConfig
 import android.content.Context
 import com.example.nubo.data.network.AuthService
 import com.example.nubo.data.network.BoardService
@@ -32,7 +33,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY }
 
 
     @Provides
@@ -58,8 +60,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://nubo-backend.fly.dev")
-  //          .baseUrl("https://janae-nontenantable-endosmotically.ngrok-free.dev")
+            .baseUrl(BuildConfig.NUBO_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

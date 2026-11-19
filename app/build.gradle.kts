@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -8,6 +10,18 @@ plugins {
     // 대시보드 렌더링
     id("kotlin-parcelize")
 }
+
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) {
+        file.inputStream().use { load(it) }
+    }
+}
+
+val nuboBaseUrl = localProperties.getProperty(
+    "NUBO_BASE_URL",
+    "https://example.com/"
+)
 
 android {
     namespace = "com.example.nubo"
@@ -21,6 +35,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "NUBO_BASE_URL", "\"$nuboBaseUrl\"")
+
     }
 
     buildTypes {
@@ -47,6 +64,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
