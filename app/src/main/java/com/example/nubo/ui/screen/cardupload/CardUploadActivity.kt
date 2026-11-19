@@ -122,8 +122,6 @@ class CardUploadActivity : AppCompatActivity() {
                 return
             }
 
-            Log.d("CardUploadActivity", "token=${accessToken.take(8)}...")
-
             // Android 13 이상은 알림 권한 필요
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 pendingShareIntent = incoming

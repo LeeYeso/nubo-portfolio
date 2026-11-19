@@ -103,7 +103,6 @@ class AuthRepository @Inject constructor(
 
     // --- Token & user info persistence ---
     fun saveAccessToken(token: String) {
-        Log.d(TAG, "saveAccessToken() length=${token.length} preview=${token.take(10)}...")
         sharedPreferences.edit().apply {
             putString(KEY_ACCESS_TOKEN, token)
             apply()
@@ -111,7 +110,6 @@ class AuthRepository @Inject constructor(
     }
 
     fun saveUserId(userId: Int) {
-        Log.d(TAG, "saveUserId() id=$userId")
         sharedPreferences.edit().apply {
             putInt(KEY_USER_ID, userId)
             apply()

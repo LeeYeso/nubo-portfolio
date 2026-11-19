@@ -44,7 +44,6 @@ class NuboFcmService : FirebaseMessagingService() {
     @SuppressLint("HardwareIds")
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d("FCM_SVC", "onNewToken=$token")
         if (token.isBlank()) return
 
         // 로그인 직후 재등록을 위한 최신 토큰 캐시 (로그인 상태가 아닐 수 있으므로)
