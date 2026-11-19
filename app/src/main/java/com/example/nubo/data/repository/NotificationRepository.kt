@@ -90,7 +90,6 @@ class NotificationRepository @Inject constructor(
             return RegisterOutcome.SkippedAlready
         }
 
-        android.util.Log.d("FCM_REG", "try register (force=$force, expired=$expired, ${fcmToken.take(12)}...)")
         return runCatching {
             val res = api.registerDeviceToken(RegisterDeviceTokenRequest(fcmToken))
             if (res.isSuccessful) {
@@ -99,7 +98,6 @@ class NotificationRepository @Inject constructor(
                     putString(KEY_REGISTERED_TOKEN, fcmToken)
                     putLong(KEY_REGISTERED_AT, now)
                 }
-                android.util.Log.d("FCM_REG", "success 200 (${fcmToken.take(12)}...)")
                 RegisterOutcome.Success
             } else {
                 android.util.Log.w("FCM_REG", "fail HTTP ${res.code()}")

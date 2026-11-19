@@ -139,27 +139,4 @@ class InviteViewModel @Inject constructor(
         _selected.value = emptySet()
         _selectedUsers.value = emptyList()
     }
-
-    // 초대 실행
-    fun inviteSelected(
-        onSuccess: (Set<String>) -> Unit,
-        onError: (Throwable) -> Unit = {}
-    ) {
-        viewModelScope.launch {
-            try {
-                // TODO: call real server API with _selected.value
-                // repo.invite(_selected.value)
-
-                onSuccess(_selected.value)
-                // (Optional) Clear after successful invite:
-                // _selected.value = emptySet()
-
-            } catch (t: Throwable) {
-                onError(t)
-            }
-        }
-    }
-
-
-
 }

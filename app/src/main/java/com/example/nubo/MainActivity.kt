@@ -27,22 +27,18 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -68,17 +64,10 @@ import com.example.nubo.ui.screen.home.HomeScreen
 import com.example.nubo.ui.screen.home.HomeViewModel
 import com.example.nubo.ui.screen.interest.OnBoardingInterestRoute
 import com.example.nubo.ui.screen.learn.LearnScreen
-import com.example.nubo.ui.screen.myBoard.ActionsContent
-import com.example.nubo.ui.screen.myBoard.BoardAction
 import com.example.nubo.ui.screen.myBoard.BoardDetailScreen
-import com.example.nubo.ui.screen.myBoard.BoardDetailViewModel
-import com.example.nubo.ui.screen.myBoard.BoardSelectionSheetContent
-import com.example.nubo.ui.screen.myBoard.DeleteConfirmationDialog
 import com.example.nubo.ui.screen.myBoard.MyBoardRoute
-import com.example.nubo.ui.screen.myBoard.MyBoardScreen
 import com.example.nubo.ui.screen.notification.NotiEvent
 import com.example.nubo.ui.screen.myBoard.SectionDetailScreen
-import com.example.nubo.ui.screen.myBoard.SelectionBottomBar
 import com.example.nubo.ui.screen.notification.NotificationScreen
 import com.example.nubo.ui.screen.notification.NotificationViewModel
 import com.example.nubo.ui.screen.onBoardingLogin.OnBoardingLoginActivity
@@ -97,13 +86,11 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import com.example.components.toast.LocalAppToastHostState
 import com.example.nubo.ui.component.toast.GlobalToastBinder
-import com.example.nubo.ui.component.toast.GlobalToastBus
 import com.example.nubo.ui.screen.learn.LearnScreenBerry
 import com.example.nubo.ui.screen.onBoadingTutorial.OnBoardingTutorialRoute
 import com.example.nubo.ui.screen.profile.HelpRoute
@@ -114,7 +101,6 @@ import com.example.nubo.ui.screen.recommendCard.RecommendDetailUiState
 import com.example.nubo.ui.screen.recommendCard.SaveUiState
 import com.example.nubo.ui.theme.AppTextStyles
 import com.example.nubo.ui.theme.Grey500
-import com.example.nubo.ui.theme.GreyMain300
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
