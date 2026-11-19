@@ -59,7 +59,6 @@ import com.example.nubo.ui.theme.AppTextStyles.b2_bold_16
 import com.example.nubo.ui.theme.AppTextStyles.b2_semibold_16
 import com.example.nubo.ui.theme.AppTextStyles.b3_medium_14
 import com.example.nubo.ui.theme.AppTextStyles.b3_regular_14
-import com.example.nubo.ui.theme.Grey10
 import com.example.nubo.ui.theme.Grey1000
 import com.example.nubo.ui.theme.Grey20
 import com.example.nubo.ui.theme.Grey200

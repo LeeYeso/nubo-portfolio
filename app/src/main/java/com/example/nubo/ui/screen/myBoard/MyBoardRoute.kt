@@ -1,7 +1,6 @@
 package com.example.nubo.ui.screen.myBoard
 
 import android.os.Parcelable
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -72,7 +71,6 @@ fun MyBoardRoute(
 
 
     // --- 카드 선택용 바텀바 상태 ---
-    val boardsState by boardDetailViewModel.boards.collectAsState()
     var showBoardSelector by remember { mutableStateOf(false) }
     var currentAction by remember { mutableStateOf<BoardAction?>(null) }
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -82,7 +80,6 @@ fun MyBoardRoute(
 
     //안내 토스트 관련 변수
     var boardSheetHeightPx by remember { mutableStateOf(0) }
-    val density = LocalDensity.current
 
     // --- 보드 삭제 다이얼로그 상태 ---
     var showBoardDeleteDialog by remember { mutableStateOf(false) }
@@ -91,12 +88,6 @@ fun MyBoardRoute(
     var boardIdsToDelete by remember { mutableStateOf(emptySet<Int>()) }
 
     val scope = rememberCoroutineScope()
-
-    // --- ModalBottomSheet 상태 관리 ---
-    @OptIn(ExperimentalMaterial3Api::class)
-    val bottomSheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true // 부분적으로 확장되는 상태 스킵 (항상 전체 확장)
-    )
 
     // --- 카드 선택 상태 초기화 ---
     val resetCardSelectionState = {

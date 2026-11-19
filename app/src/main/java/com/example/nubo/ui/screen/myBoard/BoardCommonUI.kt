@@ -27,7 +27,6 @@ import kotlin.math.roundToInt
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.unit.Dp
 import kotlinx.coroutines.launch
 import com.example.nubo.R
 import com.example.nubo.ui.theme.AppTextStyles.b1_semibold_18

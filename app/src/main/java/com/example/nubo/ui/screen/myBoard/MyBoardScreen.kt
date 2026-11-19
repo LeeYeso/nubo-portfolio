@@ -64,7 +64,6 @@ import com.example.nubo.ui.theme.AppTextStyles.b2_medium_16
 import com.example.nubo.ui.theme.AppTextStyles.label_SemiBold_12
 import com.example.nubo.ui.theme.Grey1000
 import com.example.nubo.ui.theme.Grey50
-import com.example.nubo.ui.theme.Grey500
 import com.example.nubo.ui.theme.GreyMain300
 import com.example.nubo.ui.theme.Purple50
 import com.example.nubo.ui.theme.PurpleMain500
@@ -122,35 +121,35 @@ fun MyBoardScreen(
         toastMessage?.let { message ->
 
             // 네트워크/보드 로딩 에러 전용 플래그
-//            val isBoardLoadError = (message == "정보를 불러오지 못했어요")
+            val isBoardLoadError = (message == "정보를 불러오지 못했어요")
 
-            // 메시지 내용에 따라 토스트 타입 결정
-//            val toastType = when {
-//                isBoardLoadError -> AppToastType.NEGATIVE
-//                message.contains("실패했어요.") -> AppToastType.NEGATIVE
-//                message.contains("취소되었어요.") -> AppToastType.POSITIVE
-//                message.contains("즐겨찾기가") -> AppToastType.FAVORITE
-//                else -> AppToastType.NORMAL
-//            }
+            //메시지 내용에 따라 토스트 타입 결정
+            val toastType = when {
+                isBoardLoadError -> AppToastType.NEGATIVE
+                message.contains("실패했어요.") -> AppToastType.NEGATIVE
+                message.contains("취소되었어요.") -> AppToastType.POSITIVE
+                message.contains("즐겨찾기가") -> AppToastType.FAVORITE
+                else -> AppToastType.NORMAL
+            }
 
-//            scope.launch {
-//                if (isBoardLoadError) {
-//                    // 보드 목록 불러오기 실패 시: 제목 + 요약 두 줄 토스트
-//                    toastHostState.show(
-//                        title = AnnotatedString("정보를 불러오지 못했어요"),
-//                        summary = "네트워크 확인 후 다시 시도해주세요.",
-//                        type = toastType, // NEGATIVE
-//                        layout = AppToastLayout.TitleWithSummary
-//                    )
-//                } else {
-//                    // 기존 한 줄 토스트
-//                    toastHostState.show(
-//                        title = buildAnnotatedString { append(message) },
-//                        layout = AppToastLayout.TitleOnly,
-//                        type = toastType
-//                    )
-//                }
-//            }
+            scope.launch {
+                if (isBoardLoadError) {
+                    // 보드 목록 불러오기 실패 시: 제목 + 요약 두 줄 토스트
+                    toastHostState.show(
+                        title = AnnotatedString("정보를 불러오지 못했어요"),
+                        summary = "네트워크 확인 후 다시 시도해주세요.",
+                        type = toastType, // NEGATIVE
+                        layout = AppToastLayout.TitleWithSummary
+                    )
+                } else {
+                    // 기존 한 줄 토스트
+                    toastHostState.show(
+                        title = buildAnnotatedString { append(message) },
+                        layout = AppToastLayout.TitleOnly,
+                        type = toastType
+                    )
+                }
+            }
 
             // 한 번 표시한 뒤에는 다시 뜨지 않도록 메시지 초기화
             boardViewModel.clearToastMessage()
@@ -212,7 +211,6 @@ fun MyBoardScreen(
 
     // 검색 모드 진입 시 키보드 자동 표시
     LaunchedEffect(isSearchMode) {
-        val handle = navController.currentBackStackEntry?.savedStateHandle
         if (isSearchMode) {
             focusRequester.requestFocus()   // 검색창 포커스
             keyboard?.show()                // 키보드 올림

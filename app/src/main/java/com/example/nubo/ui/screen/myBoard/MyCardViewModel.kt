@@ -15,9 +15,6 @@ import com.example.nubo.domain.model.CardFilter
 import com.example.nubo.model.myBoard.MyCardItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 // 현재 정렬/필터 상태
@@ -39,10 +36,8 @@ class MyCardViewModel @Inject constructor(
 
     // 상세 카드 데이터 상태
     private val _cardDetail = mutableStateOf<CardDetailResponse?>(null)
-    val cardDetail: State<CardDetailResponse?> get() = _cardDetail
 
     private val _isDetailLoading = mutableStateOf(false)
-    val isDetailLoading: State<Boolean> get() = _isDetailLoading
 
     // --- Paging states for "my cards" ---
     private var page: Int = 0               // current page index
@@ -109,41 +104,6 @@ class MyCardViewModel @Inject constructor(
         // (Route에서 reset 호출 후 바로 refresh()를 호출하기 때문)
     }
 
-
-//    private fun fetchCards() {
-//        _isLoading.value = true
-//
-//        authRepository.getAccessToken()?.let { token ->
-//            cardRepository.getCards("Bearer $token", CardSort.LATEST, null, null)
-//                .enqueue(object : Callback<List<CardResponse>> {
-//                    override fun onResponse(
-//                        call: Call<List<CardResponse>>,
-//                        response: Response<List<CardResponse>>
-//                    ) {
-//                        _isLoading.value = false
-//                        if (response.isSuccessful) {
-//                            _cards.value = response.body()?.map {
-//                                MyCardItem(
-//                                    id = it.cardId,
-//                                    imageUrl = it.videoThumbnailUrl
-//                                )
-//                            } ?: emptyList()
-//                        } else {
-//                            _cards.value = emptyList()
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<List<CardResponse>>, t: Throwable) {
-//                        _isLoading.value = false
-//                        _cards.value = emptyList()
-//                    }
-//                })
-//        } ?: run {
-//            _isLoading.value = false
-//            _cards.value = emptyList()
-//        }
-//    }
-
     /**
      * Load cards with paging
      * @param reset true to reload from page 0, false to append next page
@@ -195,39 +155,6 @@ class MyCardViewModel @Inject constructor(
                 _isLoading.value = false
             }
         }
-    }
-
-    fun getCardDetail(cardId: Int) {
-        _isDetailLoading.value = true
-
-        authRepository.getAccessToken()?.let { token ->
-            cardRepository.getCardDetail( cardId)
-                .enqueue(object : Callback<CardDetailResponse> {
-                    override fun onResponse(
-                        call: Call<CardDetailResponse>,
-                        response: Response<CardDetailResponse>
-                    ) {
-                        _isDetailLoading.value = false
-                        if (response.isSuccessful) {
-                            _cardDetail.value = response.body()
-                        } else {
-                            _cardDetail.value = null
-                        }
-                    }
-
-                    override fun onFailure(call: Call<CardDetailResponse>, t: Throwable) {
-                        _isDetailLoading.value = false
-                        _cardDetail.value = null
-                    }
-                })
-        } ?: run {
-            _isDetailLoading.value = false
-            _cardDetail.value = null
-        }
-    }
-
-    fun clearCardDetail() {
-        _cardDetail.value = null
     }
 
     fun searchCards(query: String) {

@@ -27,10 +27,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-data class CardDeleteEvent(
-    val count: Int
-)
-
 @HiltViewModel
 class BoardViewModel @Inject constructor(
     private val boardService: BoardService,

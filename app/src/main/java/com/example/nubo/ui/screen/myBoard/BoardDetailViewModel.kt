@@ -238,8 +238,6 @@ class BoardDetailViewModel @Inject constructor(
         val newFav = !currentFavorite
 
         // 토스트 메세지 설정
-        val targetSection = board.sections.find { it.id.toInt() == sectionId }
-        val sectionName = targetSection?.name ?: "섹션"
 
         val successMessage = if (newFav) {
             "즐겨찾기가 완료되었어요."
@@ -783,10 +781,8 @@ class BoardDetailViewModel @Inject constructor(
                     // 대기/참여 중 멤버 목록 다시 불러오기
                     loadBoardMembers()
                 } else {
-                    // TODO: error toast
                 }
             } catch (e: Exception) {
-                // TODO: error toast
             }
         }
     }

@@ -76,7 +76,6 @@ import com.example.components.toast.LocalAppToastHostState
 import com.example.nubo.ui.component.noRippleClickable
 import com.example.nubo.ui.theme.AppTextStyles.b2_medium_16
 import com.example.nubo.ui.theme.Grey50
-import com.example.nubo.ui.theme.Purple100
 
 // 어떤 다이얼로그를 띄울지 구분하기 위한 sealed class
 sealed class InputDialogMode {
@@ -96,9 +95,6 @@ fun BoardDetailScreen(
     navController: NavController,
     source: String?,
     viewModel: BoardDetailViewModel = hiltViewModel(),
-    // MyBoardScreen과 공유할 BoardViewModel 주입
-    // Hilt Navigation Compose 라이브러리를 통해 이전 백스택의 ViewModel 인스턴스를 가져옴
-    boardViewModel: BoardViewModel = hiltViewModel(remember { navController.previousBackStackEntry!! }),
     modifier: Modifier = Modifier
 ) {
 

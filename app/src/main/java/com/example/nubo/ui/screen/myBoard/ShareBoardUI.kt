@@ -235,11 +235,6 @@ private fun PendingMemberRow(
                 style = b2_medium_16,
                 color = MaterialTheme.colorScheme.onSurface
             )
-            /*Text(
-                text = invitation.email,
-                style = AppTextStyles.b3_regular_14,
-                color = Grey200 // 혹은 Grey500
-            )*/
         }
 
         // 초대 취소 버튼 (요청하신 스타일 적용)

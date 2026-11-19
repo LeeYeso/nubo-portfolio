@@ -78,15 +78,6 @@ fun SectionRename(
                         .noRippleClickable { onBack() }
                 )
                 Text(text = "섹션 이름 변경", style = b1_semibold_18)
-              /*  // 오른쪽 닫기 버튼
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_close),
-                    contentDescription = "닫기",
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .size(24.dp)
-                        .noRippleClickable { onDismiss() }
-                )*/
             }
 
             Spacer(Modifier.height(28.dp))
@@ -218,15 +209,6 @@ fun AddSection(
                         .noRippleClickable { onBack() }
                 )
                 Text(text = "섹션 추가", style = b1_semibold_18)
-               /* // 오른쪽 닫기 버튼
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_close),
-                    contentDescription = "닫기",
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .size(24.dp)
-                        .noRippleClickable { onDismiss() }
-                )*/
             }
 
             Spacer(Modifier.height(28.dp))
