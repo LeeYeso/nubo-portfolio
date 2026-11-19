@@ -125,7 +125,14 @@ Nubo는 저장한 숏폼 콘텐츠를 사용자가 다시 찾고 활용할 수 �
 - `ui/screen/myBoard/BoardDetailViewModel.kt`
 - `ui/screen/myBoard/BoardViewModel.kt`
 
-*추후 MyBoard 목록·상세 화면 스크린샷 추가 예정*
+
+<p align="center">
+  <img src="assets/images/myboard-board-list.png" width="250" alt="보드 목록" />
+  <img src="assets/images/myboard-card-list.png" width="250" alt="카드 목록" />
+  <img src="assets/images/myboard-edit.png" width="250" alt="보드 상세 및 편집 메뉴" />
+</p>
+
+<p align="center"><sub>Android 에뮬레이터 실행 화면 — 보드 목록 / 카드 목록 / Figma 디자인 시안 — 보드 상세 및 편집 메뉴 (Android 구현)</sub></p>
 
 
 
@@ -156,7 +163,20 @@ Nubo는 저장한 숏폼 콘텐츠를 사용자가 다시 찾고 활용할 수 �
 - `ui/screen/learn/LearnScreenInformation.kt`
 - `ui/screen/learn/LearnScreenNuberryGet.kt`
 
-*추후 성장보드 화면 및 식물 성장 애니메이션 이미지 추가 예정*
+
+<p align="center">
+  <img src="assets/images/learn-main.png" width="300" alt="성장보드 기본 화면" />
+  <img src="assets/images/learn-levelup.png" width="300" alt="레벨업 UI" />
+</p>
+
+<p align="center"><sub>Figma 디자인 시안 — 성장보드 및 레벨업 UI (Android 구현)</sub></p>
+
+<p align="center">
+  <img src="assets/images/learn-onboarding.png" width="650" alt="성장보드 온보딩" />
+</p>
+
+<p align="center"><sub>Figma 디자인 시안 — 성장보드 온보딩 (Android 구현)</sub></p>
+
 
 
 
@@ -182,7 +202,14 @@ Nubo는 저장한 숏폼 콘텐츠를 사용자가 다시 찾고 활용할 수 �
 - `ui/component/sheet/AddVideoSheet.kt`
 - `ui/component/sheet/CreateBoardSheet.kt`
 
-*추후 영상 추가 및 보드 생성 Bottom Sheet 스크린샷 추가 예정*
+
+<p align="center">
+  <img src="assets/images/sheet-create-board.png" width="300" alt="보드 생성 Bottom Sheet" />
+  <img src="assets/images/sheet-invalid-url.png" width="300" alt="영상 URL 오류 안내" />
+</p>
+
+<p align="center"><sub>Figma 디자인 시안 — 보드 생성 및 영상 URL 입력 오류 처리 (Android 구현)</sub></p>
+
 
 
 
